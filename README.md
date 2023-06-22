@@ -1,7 +1,3 @@
-Voici votre énoncé formaté pour un fichier README.md :
-
----
-
 # Système de réservation de cinéma
 
 Le but de cet examen est de compléter un système de réservation de cinéma. Six classes principales sont fournies : `Client`, `Réservation`, `Place`, `Salle`, `Cinéma`, `Film`, et `Séance`. Certaines parties du code ont été retirées et c'est votre travail de les compléter.
