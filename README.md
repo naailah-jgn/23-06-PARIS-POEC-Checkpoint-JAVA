@@ -1,51 +1,59 @@
-# Système de réservation de cinéma
+# Checkpoint Java : Système de Réservation de Cinéma
 
-Le but de cet examen est de compléter un système de réservation de cinéma. Six classes principales sont fournies : `Client`, `Réservation`, `Place`, `Salle`, `Cinéma`, `Film`, et `Séance`. Certaines parties du code ont été retirées et c'est votre travail de les compléter.
+## Durée: 4 heures
 
-## Client (45 minutes)
+### Instructions générales
 
-La classe `Client` contient des champs pour le nom (`String nom`), l'adresse email (`String email`), et une liste des réservations (`List<Réservation> réservations`).
+L'objectif de cet examen est de créer un système de réservation pour un cinéma. Le système doit gérer des films, des séances, des salles, des clients et des réservations. Vous devrez définir plusieurs classes, leurs attributs, et leurs méthodes selon les spécifications ci-dessous.
 
-### Tâche
+### Cinéma
 
-1.1. Complétez la méthode `réserverSéance(Séance séance)` qui crée un nouvel objet `Réservation` (si la salle de la séance a des places disponibles), l'ajoute à la liste des réservations du client et le renvoie.
+Un `Cinema` a un nom, une adresse, une liste de `Film`s, une liste de `Seance`s, et une liste de `Salle`s.
 
-## Réservation (45 minutes)
+Il doit y avoir des méthodes pour :
 
-La classe `Réservation` contient des champs pour le `Client` (`Client client`), la `Séance` (`Séance séance`), la `Salle` (`Salle salle`), et la `Place` (`Place place`).
+- Ajouter un film (`addFilm(Film film)`)
+- Supprimer un film (`removeFilm(Film film)`)
+- Programmer une séance (`scheduleSeance(Film film, Date date, Time heure, Salle salle)`)
+- Récupérer toutes les séances d'un film à une date donnée (`getAllSeancesForFilmOnDate(Film film, Date date)`)
 
-## Film (30 minutes)
+### Film
 
-La classe `Film` contient des champs pour le nom (`String nom`), le synopsis (`String synopsis`), et la date de sortie (`LocalDate dateSortie`).
+Un `Film` a un nom, un synopsis, et une date de sortie.
 
-## Salle (30 minutes)
+### Séance
 
-La classe `Salle` contient des champs pour la capacité (`int capacité`) et une liste des places (`List<Place> places`). Chaque `Salle` a un numéro unique et une capacité fixe déterminée lors de sa création. Lorsqu'une `Séance` est planifiée dans une `Salle`, une nouvelle liste de `Place` est créée, avec chaque `Place` marquée comme libre.
+Une `Seance` a un `Film`, une date, une heure, une `Salle`, et une liste de `Reservation`s.
 
-### Tâche
+Elle doit avoir des méthodes pour :
 
-3.1. Ajoutez une méthode `créerPlaces()` qui génère la liste de `Place` pour la `Salle` en fonction de sa capacité. Chaque `Place` devrait avoir un numéro unique dans la `Salle`.
+- Ajouter une réservation (`addReservation(Reservation reservation)`)
+- Vérifier si la séance est complète (`isFull()`) qui renvoie `true` si toutes les places de la séance sont réservées, sinon `false`
 
-## Cinéma (45 minutes)
+### Salle
 
-La classe `Cinéma` contient des champs pour le nom (`String nom`), son adresse (`String adresse`), et une liste des salles (`List<Salle> salles`). Chaque `Cinéma` a un nombre fixe de `Salle`, déterminé lors de sa création. Lorsqu'une `Séance` est programmée dans un `Cinéma`, elle est assignée à une `Salle` spécifique à un moment donné.
+Une `Salle` a une capacité et une liste de places. Chaque place peut être représentée par une chaîne de caractères, par exemple : "A1", "B2", "C3", etc. La capacité d'une salle est égale à la taille de la liste de places.
 
-### Tâche
+### Client
 
-6.1. Ajoutez une méthode `programmerSéance(Film film, LocalDateTime heure, Salle salle)` qui crée une nouvelle `Séance` pour un `Film` donné, à une heure spécifique, dans une `Salle` donnée. Cette méthode devrait vérifier si la `Salle` est disponible à l'heure prévue avant de créer la `Séance`.
+Un `Client` a un nom, un email, et une liste de `Reservation`s.
 
-## Place (15 minutes)
+Il doit y avoir une méthode pour :
 
-La classe `Place` contient des champs pour le numéro (`int numéro`) et un booléen indiquant si la place est occupée (`boolean isOccupée`). Lorsqu'une `Place` est créée, elle est marquée comme libre. Lorsqu'un `Client` fait une
+- Faire une réservation (`reserve(Seance seance, Salle salle, String place)`) qui crée et retourne une `Reservation`. Avant de créer une réservation, cette méthode doit vérifier si la séance n'est pas complète. Si la séance est complète, la méthode retourne `null`.
 
-`Réservation`, la `Place` correspondante est marquée comme occupée.
+### Réservation
 
-### Tâche
+Une `Reservation` a un `Client`, une `Seance`, une `Salle`, et une place.
 
-1.1. Ajoutez une méthode `occuper()` qui marque la `Place` comme occupée. Cette méthode devrait vérifier si la `Place` est déjà occupée avant de la marquer.
+### Bonus
 
----
+Créez une classe `Place` avec un numéro (chaîne de caractères) et un `Map<Seance, Boolean> isOccupied`. Cette map indique si la place est occupée pour une séance donnée.
 
-Chaque question comprend des instructions détaillées sur ce qui doit être fait. Assurez-vous de bien lire chaque question avant de commencer à écrire votre code. Bonne chance!
+### Critères d'évaluation
 
----
+- Bonne utilisation des concepts de la Programmation Orientée Objet (classes, objets, méthodes, encapsulation)
+- Bonne utilisation des structures de données appropriées (Listes, Maps, etc.)
+- Bonne gestion des cas d'erreur (par exemple, qu'est-ce qui se passe si on essaie de programmer une séance dans une salle qui n'existe pas ?)
+
+Bonne chance !
