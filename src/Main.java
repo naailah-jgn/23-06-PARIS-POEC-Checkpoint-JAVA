@@ -15,8 +15,8 @@ public class Main {
                 places.add(row + i);
             }
         }
-        Salle salle1 = new Salle(70, places);
-        Salle salle2 = new Salle(70, places);
+        Salle salle1 = new Salle("salle1",70, places);
+        Salle salle2 = new Salle("salle2", 70, places);
         System.out.println("Salles created: " + salle1 + ", " + salle2);
 
         // Ajout des salles au cinéma
@@ -68,7 +68,7 @@ public class Main {
 
         // Réservation par le client
         String place = "A1";
-        Reservation reservation1 = client1.reserve(seance1, salle1, place);
+        Reservation reservation1 = client1.reserve(seance1, place);
         if (reservation1 != null) {
             System.out.println("Reservation made by client: " + reservation1);
         } else {
@@ -76,22 +76,22 @@ public class Main {
         }
 
         // Bonus: Création d'une place et vérification de sa disponibilité
-        List<Place> places = new ArrayList<>();
-        String[] rows = {"A", "B", "C", "D", "E", "F", "G"};
-        for(String row : rows) {
-            for(int i = 1; i <= 10; i++) {
-                places.add(new Place(row + i));
-            }
-        }
-
-        place1.isOccupied.put(seance1, true);
-        System.out.println("Place created and set as occupied for the seance: " + place1);
-
-        if (place1.isOccupied.get(seance1)) {
-            System.out.println("The place is occupied for this seance.");
-        } else {
-            System.out.println("The place is free for this seance.");
-        }
+//        List<Place> places = new ArrayList<>();
+//        String[] rows = {"A", "B", "C", "D", "E", "F", "G"};
+//        for(String row : rows) {
+//            for(int i = 1; i <= 10; i++) {
+//                places.add(new Place(row + i));
+//            }
+//        }
+//
+//        place1.isOccupied.put(seance1, true);
+//        System.out.println("Place created and set as occupied for the seance: " + place1);
+//
+//        if (place1.isOccupied.get(seance1)) {
+//            System.out.println("The place is occupied for this seance.");
+//        } else {
+//            System.out.println("The place is free for this seance.");
+//        }
 
     }
 }
